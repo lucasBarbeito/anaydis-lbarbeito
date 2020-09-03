@@ -19,6 +19,9 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 100);
+        testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 500);
+        testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 1000);
+        testSorter(createIntegerDataSetGenerator(), SorterType.BUBBLE, 5000);
     }
 
     /** Test InsertionSorter with String generator. */
@@ -33,6 +36,9 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 100);
+        testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 500);
+        testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 1000);
+        testSorter(createIntegerDataSetGenerator(), SorterType.INSERTION, 5000);
     }
 
     /** Test SelectionSorter with String generator. */
@@ -47,5 +53,8 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 100);
+        testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 500);
+        testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 1000);
+        testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 5000);
     }
 }

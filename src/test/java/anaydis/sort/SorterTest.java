@@ -5,15 +5,19 @@ package anaydis.sort;
  */
 abstract class SorterTest extends AbstractSorterTest {
 
+    private final SorterProviderImpl sorterProvider = new SorterProviderImpl();
+
     @Override protected DataSetGenerator<String> createStringDataSetGenerator() {
+
         return new StringDataSetGenerator();
     }
 
     @Override protected DataSetGenerator<Integer> createIntegerDataSetGenerator() {
-        throw new IllegalStateException("To be implemented!");
+
+        return new IntegerDataSetGenerator();
     }
 
     @Override protected SorterProvider getSorterProvider() {
-        throw new IllegalStateException("To be implemented!");
+       return sorterProvider;
     }
 }
