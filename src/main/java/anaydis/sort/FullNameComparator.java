@@ -4,11 +4,13 @@ import java.util.Comparator;
 
 public class FullNameComparator {
 
-    public FullNameComparator(){
+    public static Comparator<FullName> lastNameComparator(){
+        return Comparator.comparing(FullName::getLastname);
     }
 
-   /* public Comparator<FullName> lastNameComparator(){
-    }*/
+    public static Comparator<FullName> firstNameComparator(){
+        return Comparator.comparing(FullName::getLastname);
+    }
 
 
 }
