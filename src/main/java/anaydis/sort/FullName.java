@@ -3,8 +3,8 @@ package anaydis.sort;
 public class FullName {
 
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
 
     public FullName(String firstName, String lastName) {
@@ -13,10 +13,10 @@ public class FullName {
     }
 
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstName;
     }
-    public String getLastname() {
+    public String getLastName() {
         return lastName;
     }
 }

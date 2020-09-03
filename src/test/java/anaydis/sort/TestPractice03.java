@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class TestPractice03 {
 
     @Test
@@ -23,13 +24,16 @@ public class TestPractice03 {
         fullNames.add(new FullName("Alvaro", "Stessens"));
         fullNames.add(new FullName("Khalil", "Colunga"));
 
+
         Collections.shuffle(fullNames);
+
 
         insertionSorter.sort(FullNameComparator.lastNameComparator(),fullNames);
         insertionSorter.sort(FullNameComparator.firstNameComparator(),fullNames);
 
+
         for (FullName fullName : fullNames) {
-            System.out.println(fullName.getLastname() + ", " + fullName.getFirstname());
+            System.out.println(fullName.getLastName() + ", " + fullName.getFirstName());
         }
 
     }
