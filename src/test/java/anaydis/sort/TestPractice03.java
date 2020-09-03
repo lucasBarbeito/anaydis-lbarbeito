@@ -13,7 +13,7 @@ public class TestPractice03 {
     @Test
     public void FullNameComparatorTest(){
         List<FullName> fullNames = new ArrayList<>(8);
-        InsertionSorter insertionSorter = new InsertionSorter();
+        SelectionSorter selectionSorter = new SelectionSorter();
 
         fullNames.add(new FullName("Pedro", "Colunga"));
         fullNames.add(new FullName("Lucas", "Luppani"));
@@ -24,19 +24,15 @@ public class TestPractice03 {
         fullNames.add(new FullName("Alvaro", "Stessens"));
         fullNames.add(new FullName("Khalil", "Colunga"));
 
-
         Collections.shuffle(fullNames);
 
-
-        insertionSorter.sort(FullNameComparator.lastNameComparator(),fullNames);
-        insertionSorter.sort(FullNameComparator.firstNameComparator(),fullNames);
-
+        selectionSorter.sort(FullNameComparator.firstNameComparator(),fullNames);
+        selectionSorter.sort(FullNameComparator.lastNameComparator(),fullNames);
 
         for (FullName fullName : fullNames) {
             System.out.println(fullName.getLastName() + ", " + fullName.getFirstName());
         }
 
     }
-
 
 }
