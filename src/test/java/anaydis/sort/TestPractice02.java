@@ -57,4 +57,5 @@ public class TestPractice02 extends SorterTest {
         testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 1000);
         testSorter(createIntegerDataSetGenerator(), SorterType.SELECTION, 5000);
     }
+
 }
