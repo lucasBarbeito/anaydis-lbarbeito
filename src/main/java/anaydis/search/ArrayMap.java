@@ -56,8 +56,9 @@ public class ArrayMap<K,V> implements Map<K,V>{
 
     @Override
     public V get(@NotNull K key) {
-        if (indexOf(key) != -1){
-            return values.get(indexOf(key));
+        int index = indexOf(key);
+        if (index != -1){
+            return values.get(index);
         }
         return null;
     }
@@ -71,8 +72,7 @@ public class ArrayMap<K,V> implements Map<K,V>{
             values.add(index,value);
             keys.add(index,key);
         }else {
-            returningObject = values.get(index);
-            values.add(index,value);
+            returningObject = values.set(index,value);
         }
         return returningObject;
     }
