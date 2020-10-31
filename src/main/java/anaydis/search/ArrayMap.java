@@ -76,9 +76,11 @@ public class ArrayMap<K,V> implements Map<K,V>{
             index = - (index) - 1;
             values.add(index,value);
             keys.add(index,key);
+            size++;
         }else {
             returningObject = values.get(index);
             values.add(index,value);
+            size++;
         }
         return returningObject;
     }
