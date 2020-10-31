@@ -9,20 +9,40 @@ import java.util.List;
 
 public class ArrayMap<K,V> implements Map<K,V>{
 
-    private List<K> keys;
-    private List<V> values;
+    private List<Object> keys;
+    private List<Object> values;
     private Comparator comparator;
+    private int size = 0;
 
-    public ArrayMap(int maxSize, Comparator comparator){
-        keys = new ArrayList<K>(maxSize);
-        values = new ArrayList<V>(maxSize);
+    public ArrayMap(Comparator comparator){
+        keys = new ArrayList<>();
+        values = new ArrayList<>();
         this.comparator = comparator;
     }
 
 
     @Override
     public int size() {
-        return keys.size();
+        return size ;
+    }
+
+    private int indexOf(Object key){
+        if (isEmpty()) return -1;
+        if (find(key,0,size - 1) > 0)
+            return find(key,0,size-1);
+        return -1;
+    }
+    private int find(Object key, int low, int high){
+        if (low > high) return -(low +1);
+         int midValue = (low + high)/2;
+         int comparation = comparator.compare(key,keys.get(midValue));
+         if (comparation == 0){
+             return midValue;
+         }else if (comparation > midValue){
+             return find(key, midValue + 1, high);
+         }else {
+             return find(key, low , midValue-1);
+         }
     }
 
     @Override
@@ -42,12 +62,8 @@ public class ArrayMap<K,V> implements Map<K,V>{
 
     @Override
     public Object get(@NotNull Object key) {
-        if (containsKey(key)){
-            int position = 0;
-            for (int i = 0; i < keys.size(); i++){
-                if (keys.get(i).equals(key)) position = i;
-            }
-            return values.get(position);
+        if (indexOf(key) != -1){
+            return values.get(indexOf(key));
         }
         return null;
     }
@@ -55,19 +71,14 @@ public class ArrayMap<K,V> implements Map<K,V>{
     @Override
     public Object put(@NotNull Object key, Object value) {
         Object returningObject = null;
-        if (containsKey(key)){
-            int position = 0;
-            for (int i = 0; i<keys.size();i++){
-                if (keys.get(i).equals(key)) position = i;
-            }
-            if (get(key) != null){
-                returningObject.equals(values.get(position));
-                values.add(position, (V) value);
-            }else {
-                values.add(position, (V) value);
-            }
-            keys.add((K) key);
-            values.add((V) value);
+        int index = find(key,0,size-1);
+        if (index < 0 ){
+            index = - (index) - 1;
+            values.add(index,value);
+            keys.add(index,key);
+        }else {
+            returningObject = values.get(index);
+            values.add(index,value);
         }
         return returningObject;
     }
