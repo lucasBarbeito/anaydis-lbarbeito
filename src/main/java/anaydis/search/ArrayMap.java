@@ -37,7 +37,7 @@ public class ArrayMap<K,V> implements Map<K,V>{
          int comparation = comparator.compare(key,keys.get(midValue));
          if (comparation == 0){
              return midValue;
-         }else if (comparation > midValue){
+         }else if (comparation > 0){
              return find(key, midValue + 1, high);
          }else {
              return find(key, low , midValue-1);
