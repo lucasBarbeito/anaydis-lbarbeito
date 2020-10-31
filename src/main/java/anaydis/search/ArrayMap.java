@@ -12,7 +12,6 @@ public class ArrayMap<K,V> implements Map<K,V>{
     private List<Object> keys;
     private List<Object> values;
     private Comparator comparator;
-    private int size = 0;
 
     public ArrayMap(Comparator comparator){
         keys = new ArrayList<>();
@@ -23,13 +22,13 @@ public class ArrayMap<K,V> implements Map<K,V>{
 
     @Override
     public int size() {
-        return size ;
+        return keys.size() ;
     }
 
     private int indexOf(Object key){
         if (isEmpty()) return -1;
-        if (find(key,0,size - 1) > 0)
-            return find(key,0,size-1);
+        if (find(key,0,size() - 1) > 0)
+            return find(key,0,size()-1);
         return -1;
     }
     private int find(Object key, int low, int high){
@@ -71,16 +70,14 @@ public class ArrayMap<K,V> implements Map<K,V>{
     @Override
     public Object put(@NotNull Object key, Object value) {
         Object returningObject = null;
-        int index = find(key,0,size-1);
+        int index = find(key,0,size()-1);
         if (index < 0 ){
             index = - (index) - 1;
             values.add(index,value);
             keys.add(index,key);
-            size++;
         }else {
             returningObject = values.get(index);
             values.add(index,value);
-            size++;
         }
         return returningObject;
     }
