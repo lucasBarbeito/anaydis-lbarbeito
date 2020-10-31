@@ -51,12 +51,7 @@ public class ArrayMap<K,V> implements Map<K,V>{
 
     @Override
     public boolean containsKey(@NotNull K key) {
-        if (size() > 0) {
-            for (int i = 0; i < keys.size(); i++) {
-                if (keys.get(i).equals(key)) return true;
-            }
-        }
-        return false;
+       return find(key,0,size()-1) >= 0;
     }
 
     @Override
