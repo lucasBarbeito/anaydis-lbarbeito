@@ -26,13 +26,12 @@ public class ArrayMap<K,V> implements Map<K,V>{
     }
 
     private int indexOf(K key){
-        if (isEmpty()) return -1;
-        if (find(key,0,size() - 1) > 0)
-            return find(key,0,size()-1);
-        return -1;
+        int index = find(key, 0, size() - 1);
+        return index >= 0 ? index : -1;
     }
     private int find(K key, int low, int high){
         if (low > high) return -(low +1);
+
          int midValue = (low + high)/2;
          int comparation = comparator.compare(key,keys.get(midValue));
          if (comparation == 0){
@@ -69,8 +68,8 @@ public class ArrayMap<K,V> implements Map<K,V>{
         int index = find(key,0,size()-1);
         if (index < 0 ){
             index = - (index) - 1;
-            values.add(index,value);
             keys.add(index,key);
+            values.add(index,value);
         }else {
             returningObject = values.set(index,value);
         }
