@@ -32,15 +32,15 @@ public class ArrayMap<K,V> implements Map<K,V>{
     private int find(K key, int low, int high){
         if (low > high) return -(low +1);
 
-         int midValue = (low + high)/2;
-         int comparation = comparator.compare(key,keys.get(midValue));
-         if (comparation == 0){
-             return midValue;
-         }else if (comparation > 0){
-             return find(key, midValue + 1, high);
-         }else {
-             return find(key, low , midValue-1);
-         }
+        int midValue = (low + high)/2;
+        int comparation = comparator.compare(key,keys.get(midValue));
+        if (comparation == 0){
+            return midValue;
+        }else if (comparation > 0){
+            return find(key, midValue + 1, high);
+        }else {
+            return find(key, low , midValue-1);
+        }
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ArrayMap<K,V> implements Map<K,V>{
 
     @Override
     public boolean containsKey(@NotNull K key) {
-       return find(key,0,size()-1) >= 0;
+        return find(key,0,size()-1) >= 0;
     }
 
     @Override
