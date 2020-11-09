@@ -60,8 +60,9 @@ public class RWayTrieMap<V> implements Map<String,V> {
 
     @Override
     public V put(@NotNull String key, V value) {
+        V previousValue = get(key);
         head = put(head,key,value,0);
-        return head.value;
+        return previousValue;
     }
 
     private Node<V> put(Node<V> node, String key, V value, int level){
@@ -73,18 +74,18 @@ public class RWayTrieMap<V> implements Map<String,V> {
             }else {
                 size++;
                 newNode.value = value;
-                return newNode;
             }
-        } else if (level < key.length()){
-            int nextValue =  key.charAt(level);
-            node.next[nextValue] = put(node.next[nextValue],key,value,level + 1);
-        }else {
+            return newNode;
+        } else if (level == key.length()){
             node.value = value;
             return node;
+        }else {
+            int nextValue =  key.charAt(level);
+            node.next[nextValue] = put(node.next[nextValue],key,value,level + 1);
+            return node;
         }
-
-        return node;
     }
+
 
     @Override
     public void clear() {
