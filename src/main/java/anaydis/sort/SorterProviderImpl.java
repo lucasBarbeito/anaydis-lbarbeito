@@ -12,6 +12,12 @@ public class SorterProviderImpl implements SorterProvider {
         sorters.put(SorterType.BUBBLE, new BubbleSorter());
         sorters.put(SorterType.INSERTION, new InsertionSorter());
         sorters.put(SorterType.SELECTION,new SelectionSorter());
+        sorters.put(SorterType.QUICK, new QuickSorter());
+        sorters.put(SorterType.QUICK_CUT, new QuickCutoffSorter());
+        sorters.put(SorterType.QUICK_NON_RECURSIVE, new QuickNonRecursiveSorter());
+        sorters.put(SorterType.QUICK_MED_OF_THREE, new QuickMedianOfThreeSorter());
+        sorters.put(SorterType.QUICK_THREE_PARTITION, new QuickThreeWaySorter());
+
     }
 
 
