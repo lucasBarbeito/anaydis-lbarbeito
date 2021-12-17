@@ -1,4 +1,4 @@
-package anaydis.sort.tp4.ejercicio2;
+package anaydis.sort.tp4.ejercicio3;
 
 import anaydis.sort.*;
 import org.junit.Assert;
@@ -7,12 +7,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class QuickMedianOfThreeSorterTest {
+public class MergeBottomUpSorterTest {
 
     private final DataSetGenerator<Integer> generator = new IntegerDataSetGenerator();
-    private final QuickMedianOfThreeSorter sorter = (QuickMedianOfThreeSorter) new SorterProviderImpl().getSorterForType(SorterType.QUICK_MED_OF_THREE);
+    private final MergeBottomUpSorter sorter = (MergeBottomUpSorter) new SorterProviderImpl().getSorterForType(SorterType.MERGE_BOTTOM_UP);
 
     @Test
     public void testGenerator(){
@@ -26,7 +24,7 @@ public class QuickMedianOfThreeSorterTest {
         List<Integer> integerList1 = new ArrayList<>(integerList);
         sorter.sort(generator.getComparator().reversed(), integerList1);
         sorter.sort(generator.getComparator(), integerList1);
-        assertThat(integerList).usingElementComparator(generator.getComparator()).containsExactlyElementsOf(integerList1);
+        Assert.assertEquals(integerList, integerList1);
     }
 
     @Test
