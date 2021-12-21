@@ -8,43 +8,47 @@ import java.io.OutputStream;
 
 public class RunLengthEncoding implements Compressor{
 
-    private final char scapeCharacter = (char) 27;
+    private static final char SCAPE_CHARACTER = (char) 27;
 
     @Override
-    public void encode(@NotNull InputStream inputStream, @NotNull OutputStream outputStream) throws IOException {
-        int reader = inputStream.read();
-        char current = (char) reader;
+    public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
+        int read = input.read();
         int counter = 0;
-        outputStream.write(scapeCharacter);
-        while(reader != -1){
-            if (current == (char) reader){
+        char counting_char = SCAPE_CHARACTER;
+
+        while (read != -1){
+
+
+            if (counting_char == SCAPE_CHARACTER){
+                counting_char = (char) read;
                 counter++;
-            }else{
-                outputStream.write(counter);
-                outputStream.write(current);
-                current = (char) reader;
-                counter = 1;
-                outputStream.write(scapeCharacter);
             }
-            reader = inputStream.read();
+            else if ((char)read == counting_char){
+                counter++;
+            }
+            else {
+                output.write(counter);
+                output.write(counting_char);
+                counter = 1;
+                counting_char = (char) read;
+            }
+            read = input.read();
         }
-        if (counter > 0){
-            outputStream.write(counter);
-            outputStream.write(current);
+
+        if (counter >0){
+            output.write(counter);
+            output.write(counting_char);
         }
-        inputStream.close();
-        outputStream.close();
     }
 
     @Override
-    public void decode(@NotNull InputStream inputStream, @NotNull OutputStream outputStream) throws IOException {
-        while(inputStream.available() > 0){
-            int aux = inputStream.read();
-            if ((char) aux != scapeCharacter){
-                char actual = (char) inputStream.read();
-                for (int i = 0; i < aux; i++) {
-                    outputStream.write(actual);
-                }
+    public void decode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
+
+        while (input.available() > 0){
+            final int count = input.read();
+            final char c = (char) input.read();
+            for (int i = 0; i < count; i++) {
+                output.write(c);
             }
         }
     }
